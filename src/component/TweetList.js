@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+import TweetItem from './TweetItem'
+
 class TweetList extends Component {
     constructor(props) {
         super(props);
@@ -20,20 +22,7 @@ class TweetList extends Component {
     render() {
         return (
             <div>
-                {this.state.tweets.map((tweet) => {
-                    return (
-                        <div className="tweet" key={tweet._id}>
-                            <div className="row relative">
-                                <img className="tweet-avatar" src={tweet.author.avatarUrl} alt="avatar" />
-                                <h4><b>{tweet.author.name}</b></h4>
-                                <h5>@{tweet.author.username}</h5>
-                                <h5>{tweet.createdAt}</h5>
-                            </div>
-                            <p>{tweet.content}</p>
-                        </div>
-                    )
-                }
-                )}
+                {this.state.tweets.map((tweet) => <TweetItem value={tweet} key={tweet._id}/>)}
             </div>
         );
     }
