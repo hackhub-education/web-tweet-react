@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import TweetList from './TweetList'
+
 class Page extends Component {
     render() {
         return (
@@ -21,7 +23,7 @@ class Page extends Component {
                             </div>
                         </form>
                     </div>
-                    <div id="tweet-list"></div>
+                    <TweetList />
                 </div>
             </div>
         );
