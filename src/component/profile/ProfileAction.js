@@ -7,7 +7,7 @@ class ProfileAction extends Component {
         return (
             <div className="profile-action">
                 <Link className="btn-border space-top" to="/profile/edit">Edit profile</Link>
-                <Link className="btn-border space-top" to="/login">Log out</Link>
+                <button className="btn-border space-top" onClick={this.props.handleLogout}>Log out</button>
             </div>
         );
     }

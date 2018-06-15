@@ -13,7 +13,7 @@ class Profile extends Component {
                 <h5>@honlyan</h5>
                 <h4><i className="fas fa-map-marker-alt"></i> Vancouver</h4>
                 <p className="center">Director of EduHacks * Digital Ocean Vancouver Meetup Co-organizer * CEO of HackHub * Founder of Inverse Technology Inc.</p>
-                <Route path='/profile' component={ProfileAction} />
+                <Route path='/profile' render={() => <ProfileAction handleLogout={this.props.handleLogout} /> } /> 
             </div>
         );
     }

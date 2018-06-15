@@ -1,17 +1,37 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { baseUrl } from '../config'
 
+import Nav from './Nav';
 import TweetList from './TweetList'
 import TweetPost from './TweetPost';
 import SideBar from './Sidebar';
+
+import logo from '../img/logo.png';
+import avatar from '../img/sample-avatar.png';
 
 class Page extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            tweets: []
+            tweets: [],
+            token: ''
         };
-        this.handleNewPost = this.handleNewPost.bind(this)        
+        this.handleNewPost = this.handleNewPost.bind(this)
+        this.handleTokenUpdate = this.handleTokenUpdate.bind(this)
+        this.handleLogout = this.handleLogout.bind(this)
+    }
+
+    handleTokenUpdate(token) {
+        this.setState({
+            token
+        })
+    }
+
+    handleLogout() {
+        this.setState({
+            token: ''
+        })
     }
 
     handleNewPost(newPost) {
@@ -27,12 +47,12 @@ class Page extends Component {
             _id: Math.random().toString(36).substr(2, 9)
         })
         this.setState({
-            tweets: tweets
+            tweets
         })
     }
 
     componentDidMount() {
-        axios.get(`http://tweet-api.webdxd.com/tweet`)
+        axios.get(baseUrl + '/tweet')
             .then(res => {
                 const tweets = res.data.tweets
                 this.setState({ tweets });
@@ -40,12 +60,15 @@ class Page extends Component {
     }
 
     render() {
-        return (          
-            <div className="container">
-                <SideBar avatar={this.props.avatar}/>
-                <div className="col-3of5 bg-white">
-                    <TweetPost avatar={this.props.avatar} handleNewPost={this.handleNewPost} />
-                    <TweetList tweets={this.state.tweets} />
+        return (
+            <div>
+                <Nav logo={logo} avatar={avatar} token={this.state.token} />
+                <div className="container">
+                    <SideBar avatar={avatar} handleTokenUpdate={this.handleTokenUpdate} handleLogout={this.handleLogout} token={this.state.token} />
+                    <div className="col-3of5 bg-white">
+                        {this.state.token && <TweetPost avatar={avatar} handleNewPost={this.handleNewPost} />}
+                        <TweetList tweets={this.state.tweets} />
+                    </div>
                 </div>
             </div>
         );
