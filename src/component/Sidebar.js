@@ -19,10 +19,10 @@ class SideBar extends Component {
     render() {
         return (
             <div>
-                <Route path='(/|/profile)' exact render={() => (this.handleAuth(<Profile avatar={this.props.avatar} handleLogout={this.props.handleLogout} />))} />
-                <Route path='/profile/edit' render={() => (this.handleAuth(<ProfileForm avatar={this.props.avatar} />))} />
-                <Route path='/login' render={() => (this.handleIsAuth(<LoginForm handleTokenUpdate={this.props.handleTokenUpdate} />))} />
-                <Route path='/signup' render={() => (this.handleIsAuth(<SignupForm handleTokenUpdate={this.props.handleTokenUpdate} />))} />
+                <Route path='(/|/profile)' exact render={() => (this.handleAuth(<Profile profile={this.props.profile} handleLogout={this.props.handleLogout} />))} />
+                <Route path='/profile/edit' render={() => (this.handleAuth(<ProfileForm profile={this.props.profile} />))} />
+                <Route path='/login' render={() => (this.handleIsAuth(<LoginForm handleUserUpdate={this.props.handleUserUpdate} />))} />
+                <Route path='/signup' render={() => (this.handleIsAuth(<SignupForm handleUserUpdate={this.props.handleUserUpdate} token={this.props.token} />))} />
             </div>
         );
     }

@@ -7,24 +7,22 @@ import TweetList from './tweet/TweetList'
 import TweetPost from './tweet/TweetPost';
 import SideBar from './Sidebar';
 
-import logo from '../img/logo.png';
-import avatar from '../img/sample-avatar.png';
-
 class Page extends Component {
     constructor(props) {
         super(props)
         this.state = {
             tweets: [],
-            token: ''
+            token: '',
+            profile: {}
         };
         this.handleNewPost = this.handleNewPost.bind(this)
-        this.handleTokenUpdate = this.handleTokenUpdate.bind(this)
+        this.handleUserUpdate = this.handleUserUpdate.bind(this)
         this.handleLogout = this.handleLogout.bind(this)
     }
 
-    handleTokenUpdate(token) {
+    handleUserUpdate(user) {
         this.setState({
-            token
+            ...user
         })
     }
 
@@ -62,11 +60,11 @@ class Page extends Component {
     render() {
         return (
             <div>
-                <Nav logo={logo} avatar={avatar} token={this.state.token} />
+                <Nav profile={this.state.profile} token={this.state.token} />
                 <div className="container">
-                    <SideBar avatar={avatar} handleTokenUpdate={this.handleTokenUpdate} handleLogout={this.handleLogout} token={this.state.token} />
+                    <SideBar profile={this.state.profile} handleUserUpdate={this.handleUserUpdate} handleLogout={this.handleLogout} token={this.state.token} />
                     <div className="col-3of5 bg-white">
-                        {this.state.token && <TweetPost avatar={avatar} handleNewPost={this.handleNewPost} />}
+                        {this.state.token && <TweetPost profile={this.state.profile} handleNewPost={this.handleNewPost} />}
                         <TweetList tweets={this.state.tweets} />
                     </div>
                 </div>
