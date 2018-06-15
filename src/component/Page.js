@@ -1,8 +1,25 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import TweetList from './TweetList'
 
 class Page extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            tweets: []
+        };
+    }
+
+    componentDidMount() {
+        axios.get(`http://tweet-api.webdxd.com/tweet`)
+            .then(res => {
+                const tweets = res.data.tweets
+                this.setState({ tweets });
+            })
+    }
+
+
     render() {
         return (
             <div className="container">
@@ -23,7 +40,7 @@ class Page extends Component {
                             </div>
                         </form>
                     </div>
-                    <TweetList />
+                    <TweetList tweets={this.state.tweets} />
                 </div>
             </div>
         );
