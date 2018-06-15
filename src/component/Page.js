@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import TweetList from './TweetList'
 import TweetPost from './TweetPost';
+import SideBar from './Sidebar';
 
 class Page extends Component {
     constructor(props) {
@@ -39,11 +40,9 @@ class Page extends Component {
     }
 
     render() {
-        return (
+        return (          
             <div className="container">
-                <div className="col-2of5 bg-white profile">
-                    <div className="profile-content"></div>
-                </div>
+                <SideBar avatar={this.props.avatar}/>
                 <div className="col-3of5 bg-white">
                     <TweetPost avatar={this.props.avatar} handleNewPost={this.handleNewPost} />
                     <TweetList tweets={this.state.tweets} />
