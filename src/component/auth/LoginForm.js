@@ -8,23 +8,30 @@ class LoginForm extends Component {
         super(props)
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            validForm: false
         }
         this.handleUsernameChange = this.handleUsernameChange.bind(this)
         this.handlePasswordChange = this.handlePasswordChange.bind(this)     
         this.handleLogin = this.handleLogin.bind(this)
     }
 
+    formUpdate(updateValue) {
+        let prevState = this.state
+        let formContent = {
+            ...prevState,
+            ...updateValue
+        }
+        formContent.validForm = formContent.username && formContent.password
+        this.setState(formContent)
+    }
+
     handleUsernameChange(e) {
-        this.setState({
-            username: e.target.value
-        })
+        this.formUpdate({username: e.target.value})
     }
 
     handlePasswordChange(e) {
-        this.setState({
-            password: e.target.value
-        })
+        this.formUpdate({password: e.target.value})
     }
 
     handleLogin() {
@@ -42,7 +49,7 @@ class LoginForm extends Component {
                 <form id="login-form">
                     <input className="input-auth" type="text" placeholder="Username" onChange={this.handleUsernameChange} />
                     <input className="input-auth" type="password" placeholder="Password" onChange={this.handlePasswordChange} />
-                    <button className="btn-primary" type="button" onClick={this.handleLogin}>Log in</button>
+                    <button className="btn-primary" type="button" onClick={this.handleLogin} disabled={this.state.validForm ? '' : 'disabled'}>Log in</button>
                 </form>
                 <h6>New to Web Tweet? <Link to="/signup">Sign up Now</Link></h6>
             </div>

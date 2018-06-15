@@ -3,8 +3,8 @@ import axios from 'axios';
 import { baseUrl } from '../config'
 
 import Nav from './Nav';
-import TweetList from './TweetList'
-import TweetPost from './TweetPost';
+import TweetList from './tweet/TweetList'
+import TweetPost from './tweet/TweetPost';
 import SideBar from './Sidebar';
 
 import logo from '../img/logo.png';
