@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import TweetList from './TweetList'
+import TweetPost from './TweetPost';
 
 class Page extends Component {
     constructor(props) {
@@ -9,6 +10,24 @@ class Page extends Component {
         this.state = {
             tweets: []
         };
+        this.handleNewPost = this.handleNewPost.bind(this)        
+    }
+
+    handleNewPost(newPost) {
+        let tweets = this.state.tweets
+        tweets.unshift({
+            createdAt: '2018-06-10T15:37:29.033Z',
+            author: {
+                avatarUrl: 'https://ucarecdn.com/8c34b406-c767-4858-91e2-cb1e45ad231f/',
+                username: 'yan',
+                name: 'yan',
+            },
+            content: newPost,
+            _id: Math.random().toString(36).substr(2, 9)
+        })
+        this.setState({
+            tweets: tweets
+        })
     }
 
     componentDidMount() {
@@ -19,7 +38,6 @@ class Page extends Component {
             })
     }
 
-
     render() {
         return (
             <div className="container">
@@ -27,19 +45,7 @@ class Page extends Component {
                     <div className="profile-content"></div>
                 </div>
                 <div className="col-3of5 bg-white">
-                    <div className="tweet">
-                        <form id="tweet-form">
-                            <div className="row">
-                                <img className="avatar-sm v-top" src={this.props.avatar} alt="avatar" />
-                                <textarea className="input-tweet" placeholder="What's up?" id="tweet-content"></textarea>
-                            </div>
-                            <div className="row tweet-actions">
-                                {/* <input type="hidden" role="uploadcare-uploader" name="content" id="tweet-image" data-public-key="7d92f12ba9b3c1d2afd1" data-images-only /> */}
-                                <button className="btn-clear" type="button"><i className="far fa-image" id="tweet-image-btn"></i></button>
-                                <button className="btn-primary" type="button" id="post-btn" disabled>Post</button>
-                            </div>
-                        </form>
-                    </div>
+                    <TweetPost avatar={this.props.avatar} handleNewPost={this.handleNewPost} />
                     <TweetList tweets={this.state.tweets} />
                 </div>
             </div>
