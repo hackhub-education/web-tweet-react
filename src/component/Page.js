@@ -34,16 +34,7 @@ class Page extends Component {
 
     handleNewPost(newPost) {
         let tweets = this.state.tweets
-        tweets.unshift({
-            createdAt: '2018-06-10T15:37:29.033Z',
-            author: {
-                avatarUrl: 'https://ucarecdn.com/8c34b406-c767-4858-91e2-cb1e45ad231f/',
-                username: 'yan',
-                name: 'yan',
-            },
-            content: newPost,
-            _id: Math.random().toString(36).substr(2, 9)
-        })
+        tweets.unshift(newPost)
         this.setState({
             tweets
         })
@@ -64,7 +55,7 @@ class Page extends Component {
                 <div className="container">
                     <SideBar profile={this.state.profile} handleUserUpdate={this.handleUserUpdate} handleLogout={this.handleLogout} token={this.state.token} />
                     <div className="col-3of5 bg-white">
-                        {this.state.token && <TweetPost profile={this.state.profile} handleNewPost={this.handleNewPost} />}
+                        {this.state.token && <TweetPost profile={this.state.profile} handleNewPost={this.handleNewPost} token={this.state.token}/>}
                         <TweetList tweets={this.state.tweets} />
                     </div>
                 </div>

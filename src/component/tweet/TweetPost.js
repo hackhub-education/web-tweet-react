@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import axios from 'axios'
+
+import { baseUrl } from '../../config'
 
 class TweetPost extends Component {
     constructor(props) {
@@ -17,9 +20,16 @@ class TweetPost extends Component {
     }
 
     handlePost() {
-        this.props.handleNewPost(this.state.content)
-        this.setState({
-            content: ''
+        let that = this
+        axios.post(baseUrl + '/tweet', { content: this.state.content }, {
+            headers: {
+                Authorization: 'Bearer ' + this.props.token
+            }
+        }).then(res => {
+            that.props.handleNewPost(res.data.tweet)
+            that.setState({
+                content: ''
+            })
         })
     }
 

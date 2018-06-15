@@ -7,7 +7,9 @@ class TweetList extends Component {
     render() {
         return (
             <div>
-                {this.props.tweets.map(tweet => <TweetItem value={tweet} key={tweet._id}/>)}
+                {this.props.tweets
+                    .sort((a, b) => a.createdAt < b.createdAt)
+                    .map(tweet => <TweetItem value={tweet} key={tweet._id}/>)}
             </div>
         );
     }
