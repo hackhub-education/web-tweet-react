@@ -18,6 +18,7 @@ class Page extends Component {
         this.handleNewPost = this.handleNewPost.bind(this)
         this.handleUserUpdate = this.handleUserUpdate.bind(this)
         this.handleLogout = this.handleLogout.bind(this)
+        this.handleDeletePost = this.handleDeletePost.bind(this)
     }
 
     handleUserUpdate(user) {
@@ -40,6 +41,16 @@ class Page extends Component {
         })
     }
 
+    handleDeletePost(tweetId) {
+        let tweets = this.state.tweets
+        let newTweets = tweets.filter(function(tweet) {
+            return tweet._id !== tweetId;
+        });
+        this.setState({
+            tweets: newTweets
+        })
+    }
+
     componentDidMount() {
         axios.get(baseUrl + '/tweet')
             .then(res => {
@@ -56,7 +67,7 @@ class Page extends Component {
                     <SideBar profile={this.state.profile} handleUserUpdate={this.handleUserUpdate} handleLogout={this.handleLogout} token={this.state.token} />
                     <div className="col-3of5 bg-white">
                         {this.state.token && <TweetPost profile={this.state.profile} handleNewPost={this.handleNewPost} token={this.state.token}/>}
-                        <TweetList tweets={this.state.tweets} />
+                        <TweetList tweets={this.state.tweets} token={this.state.token} profile={this.state.profile} handleDeletePost={this.handleDeletePost}/>
                     </div>
                 </div>
             </div>
