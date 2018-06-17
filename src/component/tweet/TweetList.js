@@ -14,7 +14,7 @@ class TweetList extends Component {
                 <Route path='(/|/login|/signup)' exact render={() => (this.props.tweets
                     .sort((a, b) => a.createdAt < b.createdAt)
                     .map(tweet => <TweetItem value={tweet} key={tweet._id} />))} />
-                 <Route path='/profile/edit' render={() =>  <div class="fade-cover"></div>} />
+                 <Route path='/profile/edit' render={() =>  <div className="fade-cover"></div>} />
             </div>
         );
     }

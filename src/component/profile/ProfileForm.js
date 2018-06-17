@@ -44,7 +44,7 @@ class ProfileForm extends Component {
                 Authorization: 'Bearer ' + this.props.token
             }
         }).then(res => {
-            that.props.handleUserUpdate({profile: res.data.profile})
+            that.props.updateUser({profile: res.data.profile})
             that.setState({
                 isSaved: true
             })

@@ -17,11 +17,11 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
-        <Provider store={store}>
+      <Provider store={store}>
+        <Router>
           <Page />
-        </Provider>
-      </Router>
+        </Router>
+      </Provider>
     );
   }
 }
