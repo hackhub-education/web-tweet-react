@@ -22,7 +22,7 @@ export const user = {
                     Authorization: 'Bearer ' + user.token
                 }
             }).then(res => {
-                this.update({profile: res.data.profile})
+                this.update({ profile: res.data.profile })
                 user.history.push('/profile')
             })
         }
@@ -45,9 +45,19 @@ export const tweets = {
     },
     effects: {
         async loadData() {
-              let res = await fetch(baseUrl + '/tweet')
-              let data = await res.json()
-              this.feed(data.tweets)
+            let res = await fetch(baseUrl + '/tweet')
+            let data = await res.json()
+            this.feed(data.tweets)
+        },
+        async postData(newTweet) {
+
+            axios.post(baseUrl + '/tweet', { content: newTweet.content }, {
+                headers: {
+                    Authorization: 'Bearer ' + newTweet.token
+                }
+            }).then(res => {
+                this.add(res.data.tweet)
+            })            
         }
     }
 }

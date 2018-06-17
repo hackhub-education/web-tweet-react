@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux'
 
 import TweetItem from './TweetItem'
 
@@ -20,4 +21,14 @@ class TweetList extends Component {
     }
 }
 
-export default TweetList;
+const mapState = state => ({
+    profile: state.user.profile,
+    token: state.user.token,
+    tweets: state.tweets
+})
+
+const mapDispatch = dispatch => ({
+    postData: () => dispatch.tweets.postData(),
+})
+
+export default withRouter(connect(mapState, mapDispatch)(TweetList));

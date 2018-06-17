@@ -68,8 +68,8 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-    updateUser: (user) => dispatch.user.update(user),
-    updateProfile: (user) => dispatch.user.updateProfile(user)
+    updateUser: user => dispatch.user.update(user),
+    updateProfile: user => dispatch.user.updateProfile(user)
 })
 
 export default withRouter(connect(mapState, mapDispatch)(ProfileForm));

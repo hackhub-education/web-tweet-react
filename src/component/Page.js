@@ -22,8 +22,8 @@ class Page extends Component {
                 <div className="container">
                     <SideBar profile={props.profile} handleUserUpdate={props.updateUser} handleLogout={props.logout} token={props.token} />
                     <div className="col-3of5 bg-white">
-                        {props.token && <TweetPost profile={props.profile} handleNewPost={props.addTweet} token={props.token} />}
-                        <TweetList tweets={props.tweets} token={props.token} profile={props.profile} handleDeletePost={props.removeTweet} />
+                        {props.token && <TweetPost />}
+                        <TweetList handleDeletePost={props.removeTweet} />
                     </div>
                 </div>
             </div>
@@ -39,10 +39,10 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
     loadData: () => dispatch.tweets.loadData(),
-    updateUser: (user) => dispatch.user.update(user),
+    updateUser: user => dispatch.user.update(user),
     logout: () => dispatch.user.logout(),
-    addTweet: (tweet) => dispatch.tweets.add(tweet),
-    removeTweet: (id) => dispatch.tweets.remove(id)
+    addTweet: tweet => dispatch.tweets.add(tweet),
+    removeTweet: id => dispatch.tweets.remove(id)
 })
 
 export default withRouter(connect(mapState, mapDispatch)(Page));
