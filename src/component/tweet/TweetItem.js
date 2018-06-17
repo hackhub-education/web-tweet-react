@@ -14,7 +14,7 @@ class TweetItem extends Component {
                     <h4><b>{this.props.value.author.name}</b></h4>
                     <h5>@{this.props.value.author.username}</h5>
                     <h5>{moment(this.props.value.createdAt).calendar()}</h5>
-                    <Route path="/profile" render={()=><TweetDelete _id={this.props.value._id} token={this.props.token} handleDeletePost={this.props.handleDeletePost} />}/>
+                    <Route path="/profile" render={()=><TweetDelete _id={this.props.value._id}/>}/>
                 </div>
                 <p>{this.props.value.content}</p>
             </div>

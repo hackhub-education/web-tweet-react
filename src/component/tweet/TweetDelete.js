@@ -1,22 +1,13 @@
 import React, { Component } from 'react';
-import axios from 'axios'
-
-import { baseUrl } from '../../config'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom';
 
 class TweetDelete extends Component {
 
     handleDelete() {
-        let that = this
-        axios.delete(baseUrl + '/tweet/' + this.props._id,{
-            headers: {
-                Authorization: 'Bearer ' + this.props.token
-            }
-        }).then(res => {
-            if (res.data.success) {
-                that.props.handleDeletePost(that.props._id)
-            } else {
-                console.log(res.data.error)
-            }
+        this.props.removeData({
+            _id: this.props._id,
+            token: this.props.token
         })
     }
 
@@ -27,4 +18,12 @@ class TweetDelete extends Component {
     }
 }
 
-export default TweetDelete;
+const mapState = state => ({
+    token: state.user.token
+})
+
+const mapDispatch = dispatch => ({
+    removeData: deleteTweet => dispatch.tweets.removeData(deleteTweet),
+})
+
+export default withRouter(connect(mapState, mapDispatch)(TweetDelete));

@@ -58,6 +58,16 @@ export const tweets = {
             }).then(res => {
                 this.add(res.data.tweet)
             })            
+        },
+        async removeData(deleteTweet) {
+
+            axios.delete(baseUrl + '/tweet/' + deleteTweet._id,{
+                headers: {
+                    Authorization: 'Bearer ' + deleteTweet.token
+                }
+            }).then(res => {
+                res.data.success ? this.remove(deleteTweet._id) : console.log(res.data.error)
+            })        
         }
     }
 }

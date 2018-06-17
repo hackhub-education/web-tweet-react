@@ -20,10 +20,10 @@ class Page extends Component {
             <div>
                 <Nav profile={props.profile} token={props.token} />
                 <div className="container">
-                    <SideBar profile={props.profile} handleUserUpdate={props.updateUser} handleLogout={props.logout} token={props.token} />
+                    <SideBar profile={props.profile} token={props.token} />
                     <div className="col-3of5 bg-white">
                         {props.token && <TweetPost />}
-                        <TweetList handleDeletePost={props.removeTweet} />
+                        <TweetList />
                     </div>
                 </div>
             </div>
