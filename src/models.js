@@ -1,4 +1,5 @@
 import { baseUrl } from './config'
+import axios from 'axios'
 
 export const user = {
     state: {
@@ -12,6 +13,18 @@ export const user = {
         logout(state) {
             delete state.token
             return { ...state }
+        }
+    },
+    effects: {
+        async updateProfile(user) {
+            axios.put(baseUrl + '/profile/' + user.profile._id, user.profile, {
+                headers: {
+                    Authorization: 'Bearer ' + user.token
+                }
+            }).then(res => {
+                this.update({profile: res.data.profile})
+                user.history.push('/profile')
+            })
         }
     }
 }
