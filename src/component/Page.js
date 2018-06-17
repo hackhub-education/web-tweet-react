@@ -34,8 +34,7 @@ class Page extends Component {
     }
 
     handleNewPost(newPost) {
-        let tweets = this.state.tweets
-        tweets.unshift(newPost)
+        let tweets = [...this.state.tweets, newPost]
         this.setState({
             tweets
         })
