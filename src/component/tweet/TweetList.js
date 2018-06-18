@@ -10,10 +10,10 @@ class TweetList extends Component {
         return (
             <div>
                 <Route path='/profile' render={() => (this.props.tweets
-                    .sort((a, b) => a.createdAt < b.createdAt)
+                    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
                     .map(tweet =>  tweet.author._id === this.props.profile._id ? <TweetItem value={tweet} key={tweet._id} /> : ''))} />
                 <Route path='(/|/login|/signup)' exact render={() => (this.props.tweets
-                    .sort((a, b) => a.createdAt < b.createdAt)
+                    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
                     .map(tweet => <TweetItem value={tweet} key={tweet._id} />))} />
                  <Route path='/profile/edit' render={() =>  <div className="fade-cover"></div>} />
             </div>

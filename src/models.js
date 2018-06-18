@@ -25,6 +25,12 @@ export const user = {
                 this.update({ profile: res.data.profile })
                 user.history.push('/profile')
             })
+        },
+        async loginUser(user) {
+            axios.post(baseUrl + '/auth/login', user)
+            .then(res => {
+                res.data.token && this.update({ token: res.data.token, profile: res.data.profile })
+            })
         }
     }
 }
