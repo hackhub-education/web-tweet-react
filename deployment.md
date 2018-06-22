@@ -6,7 +6,7 @@ Anything done on server cannot be undone, please have a habit of making a copy w
 ### Contents
 - [Setting Up AWS EC2 instance](#ec2-setup)
 - [SSH into instance](#ssh)
-- [What are needed in our instance for our backend server to run?](#our-needs)
+- [What are needed to run static site?](#our-needs)
 - [Install nginx](#install-nginx)
 - [Install nodejs](#install-nodejs)
 - [Test nodejs](#test-nodejs)
@@ -87,7 +87,7 @@ ubuntu@ip-172-31-39-27:~$
 7.  `ubuntu@ip-172-31-39-27:~$` this means you are logged in as user name `ubuntu`
 
 ## What are needed in our instance for our backend server to run? <a name='our-needs'></a>
-[Week 8 Slide, page 9](https://docs.google.com/presentation/d/1FHtnNt2D-y9bvDC4mYqBAir5LytVxC4XompRgWNjtpA/edit#slide=id.g3c64275ecd_0_98)
+[Week 8 Slide, page 5](https://docs.google.com/presentation/d/1FHtnNt2D-y9bvDC4mYqBAir5LytVxC4XompRgWNjtpA/edit#slide=id.g3c64275ecd_0_32)
 
 We need at least
   - Web Server (Nginx)
