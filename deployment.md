@@ -1,4 +1,4 @@
-# Course Instructions 11-Deployment
+# Course Instructions 3-Deployment
 
 ## **IMPORTANT**
 Anything done on server cannot be undone, please have a habit of making a copy when changing files / settings / or any kind of back up first.
