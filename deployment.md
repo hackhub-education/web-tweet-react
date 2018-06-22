@@ -91,7 +91,6 @@ ubuntu@ip-172-31-39-27:~$
 
 We need at least
   - Web Server (Nginx)
-  - Server environment which runs JS (Node.js)
 
 ## Now we are in our server, let's install nginx first. <a name='install-nginx'></a>
 1.  [Install nginx](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-16-04)  Run these two commands in terminal
