@@ -93,9 +93,6 @@ We need at least
   - Web Server (Nginx)
   - Server environment which runs JS (Node.js)
 
-Optional
-  - mongodb
-
 ## Now we are in our server, let's install nginx first. <a name='install-nginx'></a>
 1.  [Install nginx](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-16-04)  Run these two commands in terminal
     - `sudo apt-get update -y` [What does this do?](https://askubuntu.com/questions/222348/what-does-sudo-apt-get-update-do)
