@@ -155,6 +155,7 @@ console.log('Server running at http://localhost:8080/');
 9.  enter `cd build`, what do you see here?
 10.  enter `pwd` then you'll see the path you are in now `/home/ubuntu/web-tweet-react/build/`
 11.  Now you are done building your static files
+12.  This is not the best practice, why?
 
 
 ## Nginx Config <a name='nginx-config'></a>
