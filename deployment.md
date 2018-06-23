@@ -16,6 +16,7 @@ Anything done on server cannot be undone, please have a habit of making a copy w
 - [DNS setup with instance](#dns-setup2)
 - [Disable IP access](#ip-access)
 - [HTTPS with certbot](https://certbot.eff.org/)
+- [Server Static using S3 in AWS](#s3)
 - [Debug Reminder](#debug-reminder)
 - [Extra](#extra)
 
@@ -257,6 +258,26 @@ server {
 6.  `sudo nginx -t` // check if config is good without errors
 7.  `sudo service nginx reload`  // reload the service
 
+## <a name='s3'></a>Server Static using S3 in AWS
+1.  [Login to your aws management console](https://signin.aws.amazon.com/signin?redirect_uri=https%3A%2F%2Fconsole.aws.amazon.com%2Fconsole%2Fhome%3Fstate%3DhashArgs%2523%26isauthcode%3Dtrue&client_id=arn%3Aaws%3Aiam%3A%3A015428540659%3Auser%2Fhomepage&forceMobileApp=0)
+2.  Find and select [S3 services](https://s3.console.aws.amazon.com/s3/home?region=us-west-2#) (use the search bar or click on the services at the top left of the nav)
+3.  Click blue `Create bucket` button, you'll see a pop up modal
+4.  Enter your bucket name, there are some naming restrictions.  When done, click the blue `next` button
+5.  Set any properties as you wish then click the blue `next` button
+6.  setting permissions, under `Manage public permissions` click `Grant public read access to this bucket` then click the blue `next` button.
+7.  click the `Create bucket` button
+8.  Now you are back to the [S3 services](https://s3.console.aws.amazon.com/s3/home?region=us-west-2#) dashboard
+9.  Click the bucket's name which you just created
+10. You will see 4 tabs now [Overview, Properties, Permissions, Management]
+11. In overview tab, click the `upload` button
+12. Drag all the files into it then click `next` button and wait for the upload to finish.
+13. Choose the properties tab and click on `Static Web Hosting`
+14. Choose `Use this bucket to host a website`, under `Index document` input `index.html` then click save.
+15. Open the `Static Web Hosting` again, where it says `Endpoint` is the `url` of your static website
+
+**Note** The url looks ugly and want to use your own domain?
+- Go to your DNS setting
+- This time instead of using `a` type, use `cname` then points to the `endpoint` aws gives you.
 
 ## <a name="debug-reminder"></a>Debug reminder
 1.  Make sure aws port is opened by using <a name='security-group'></a>[Security Group](https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2#SecurityGroups:sort=groupId)
