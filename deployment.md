@@ -267,6 +267,9 @@ server {
 
 2.  Any modification to nginx's file, remember to restart / reload nginx for settings to load
 
+3.  Because of react's routing, refreshing page will give you 404 when in other path.
+    - if using instance add this into your `try_files $uri $uri/ /index.html;` in your `server block`
+    - if using s3 set error as `index.html`
 
 ## <a name="extra"></a>Extra
 1.  Few commands to remember which would help 
