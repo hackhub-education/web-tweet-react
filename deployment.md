@@ -298,6 +298,7 @@ server {
 
 2.  Reference urls
   - [Login to your aws management console](https://signin.aws.amazon.com/signin?redirect_uri=https%3A%2F%2Fconsole.aws.amazon.com%2Fconsole%2Fhome%3Fstate%3DhashArgs%2523%26isauthcode%3Dtrue&client_id=arn%3Aaws%3Aiam%3A%3A015428540659%3Auser%2Fhomepage&forceMobileApp=0)
+  - [S3 services](https://s3.console.aws.amazon.com/s3/home?region=us-west-2#)
   - [EC2 services](https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2)
   - [Instances List](https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2#Instances:)
   - [Launch Instance](https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2#LaunchInstanceWizard:)
