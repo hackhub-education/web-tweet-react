@@ -153,10 +153,11 @@ console.log('Server running at http://localhost:8080/');
 6.  in server terminal enter `cd web-tweet-react/` which bring us into the directory
 7.  enter `git checkout 3-deployment` to change to the branch we are to deploy with
 8.  enter `npm i` when you are in the directory to install `node_modules` needed
-9.  enter `cd build`, what do you see here?
-10.  enter `pwd` then you'll see the path you are in now `/home/ubuntu/web-tweet-react/build/`
-11.  Now you are done building your static files
-12.  This is not the best practice, why?
+9.  enter `npm build`, this will build your react script and everything you need will be in the build folder this command creates
+10.  enter `cd build`, what do you see here?
+11.  enter `pwd` then you'll see the path you are in now `/home/ubuntu/web-tweet-react/build/`
+12.  Now you are done building your static files
+13.  This is not the best practice, why?
 
 
 ## Nginx Config <a name='nginx-config'></a>
