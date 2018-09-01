@@ -11,6 +11,7 @@ Anything done on server cannot be undone, please have a habit of making a copy w
 - [Install nodejs](#install-nodejs)
 - [Test nodejs](#test-nodejs)
 - [Clone repo](#clone-repo)
+- [Build Script](#build-script)
 - [Nginx Config](#nginx-config)
 - [DNS setup with domain provider](#dns-setup1)
 - [DNS setup with instance](#dns-setup2)
@@ -150,14 +151,16 @@ console.log('Server running at http://localhost:8080/');
     -  [Add SSH key to github](https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/)
 4.  in server termainl enter `pwd` and you should see `/home/ubuntu` as return saying you are in root directory of this user
 5.  now enter `git clone https://github.com/webdxd/web-tweet-react.git` which will ask your `github` account's username and password
-6.  in server terminal enter `cd web-tweet-react/` which bring us into the directory
-7.  enter `git checkout 3-deployment` to change to the branch we are to deploy with
-8.  enter `npm i` when you are in the directory to install `node_modules` needed
-9.  enter `npm build`, this will build your react script and everything you need will be in the build folder this command creates
-10.  enter `cd build`, what do you see here?
-11.  enter `pwd` then you'll see the path you are in now `/home/ubuntu/web-tweet-react/build/`
-12.  Now you are done building your static files
-13.  This is not the best practice, why?
+
+## Build script<a name='build-script'></a>
+1.  in server terminal enter `cd web-tweet-react/` which bring us into the directory
+2.  enter `git checkout 3-deployment` to change to the branch we are to deploy with
+3.  enter `npm i` when you are in the directory to install `node_modules` needed
+4.  enter `npm build`, this will build your react script and everything you need will be in the build folder this command creates
+5.  enter `cd build`, what do you see here?
+6.  enter `pwd` then you'll see the path you are in now `/home/ubuntu/web-tweet-react/build/`
+7.  Now you are done building your static files
+8.  This is not the best practice, why?
 
 
 ## Nginx Config <a name='nginx-config'></a>
