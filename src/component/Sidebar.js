@@ -9,11 +9,11 @@ import ProfileForm from './profile/ProfileForm';
 class SideBar extends Component {
 
     render() {
-        return this.props. token ?
+        return this.props.token ?
             // the pages to show when user get access token
             <Switch>
                 <Route path="/profile/edit" component={ProfileForm} />
-                <Route exac path="/" component={Profile} />
+                <Route exac path="(/|/profile)" component={Profile} />
                 <Redirect to="/" />
             </Switch> :
             // the pages to show when user don't have the token
