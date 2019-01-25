@@ -9,18 +9,12 @@ import ProfileForm from './profile/ProfileForm';
 class SideBar extends Component {
 
     render() {
-        const { 
-            token, 
-            profile, 
-            handleLogout, 
-        } = this.props
-
-        return token ?
+        return this.props. token ?
             // the pages to show when user get access token
             <Switch>
                 <Route path="/profile/edit" component={ProfileForm} />
-                <Route path="/" render={() => <Profile profile={profile} handleLogout={handleLogout}/>} />
-                <Redirect to={profile.location && profile.bio ? '/' : '/profile/edit'} />
+                <Route exac path="/" component={Profile} />
+                <Redirect to="/" />
             </Switch> :
             // the pages to show when user don't have the token
             <Switch>
@@ -28,7 +22,6 @@ class SideBar extends Component {
                 <Route path="/signup" component={SignupForm} />
                 <Redirect to="/signup" />
             </Switch>
-
     }
 }
 

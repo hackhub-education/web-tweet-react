@@ -28,7 +28,7 @@ class SignupForm extends Component {
     render() {
         return (
             <div className="profile user-auth">
-                <h3>Sign in to Web Tweet</h3>
+                <h3>Sign up for Web Tweet</h3>
                 <input className="input-auth" type="text" placeholder="Username" onChange={this.handleUsernameChange} />
                 <input className="input-auth" type="password" placeholder="Password" onChange={this.handlePasswordChange} />
                 <input className="input-auth" type="password" placeholder="Repeat password" onChange={this.handleRepeatPasswordChange} />

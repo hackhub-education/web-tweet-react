@@ -25,7 +25,7 @@ class Page extends Component {
                 <Nav profile={profile} token={token} />
                 <div className="container">
                     <div className="col-2of5 bg-white">
-                        <SideBar profile={profile} token={token} />
+                        <SideBar token={token} />
                     </div>
                     <div className="col-3of5 bg-white">
                         {token && <TweetPost />}

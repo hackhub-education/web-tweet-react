@@ -29,7 +29,7 @@ export const user = {
         async loginUser(user) {
             const { data: { token, profile } } = await axios.post(baseUrl + '/auth/login', user)
             token && this.update({ token, profile })
-            history.replace('/')
+            history.replace(profile.location && profile.bio ? '/' : '/profile/edit')
         },
         async signUp(newUser) {
             const { data: { error, token, profile } } = await axios.post(baseUrl + '/auth/signup', newUser)
