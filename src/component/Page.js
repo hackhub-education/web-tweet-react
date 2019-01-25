@@ -19,7 +19,7 @@ class Page extends Component {
             profile,
             token,
         } = this.props
-        console.log(token)
+
         return (
             <div>
                 <Nav profile={profile} token={token} />

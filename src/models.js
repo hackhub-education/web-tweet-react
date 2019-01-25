@@ -12,7 +12,6 @@ export const user = {
             return { ...state, ...user }
         },
         logout(state) {
-            console.log('logout')
             return { ...state, token: null }
         }
     },
