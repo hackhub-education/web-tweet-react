@@ -30,8 +30,5 @@ const mapState = state => ({
     tweets: state.tweets
 })
 
-const mapDispatch = dispatch => ({
-    postData: () => dispatch.tweets.postData(),
-})
 
-export default withRouter(connect(mapState, mapDispatch)(TweetList));
+export default withRouter(connect(mapState)(TweetList));

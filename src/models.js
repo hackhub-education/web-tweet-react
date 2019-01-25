@@ -12,8 +12,8 @@ export const user = {
             return { ...state, ...user }
         },
         logout(state) {
-            delete state.token
-            return { ...state }
+            console.log('logout')
+            return { ...state, token: null }
         }
     },
     effects: {
@@ -28,8 +28,18 @@ export const user = {
 
         },
         async loginUser(user) {
-            const {data:{ token, profile}} = await axios.post(baseUrl + '/auth/login', user)
+            const { data: { token, profile } } = await axios.post(baseUrl + '/auth/login', user)
             token && this.update({ token, profile })
+            history.replace('/')
+        },
+        async signUp(newUser) {
+            const { data: { error, token, profile } } = await axios.post(baseUrl + '/auth/signup', newUser)
+            if (error) {
+                console.log(error)
+            } else {
+                token && this.update({ token, profile })
+                history.replace('/')
+            }
         }
     }
 }

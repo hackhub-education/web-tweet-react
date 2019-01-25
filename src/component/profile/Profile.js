@@ -27,7 +27,7 @@ class Profile extends Component {
                     render={() =>
                         <Fragment>
                             <Link className="btn-border space-top" to="/profile/edit">Edit profile</Link>
-                            <Link className="btn-border space-top" to="/login">Log out</Link>
+                            <button className="btn-border space-top" onClick={this.props.logout}>Log out</button>
                         </Fragment>
                     }
                 />

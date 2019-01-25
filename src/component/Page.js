@@ -19,7 +19,7 @@ class Page extends Component {
             profile,
             token,
         } = this.props
-
+        console.log(token)
         return (
             <div>
                 <Nav profile={profile} token={token} />
@@ -44,11 +44,7 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-    loadData: () => dispatch.tweets.loadData(),
-    updateUser: user => dispatch.user.update(user),
-    logout: () => dispatch.user.logout(),
-    addTweet: tweet => dispatch.tweets.add(tweet),
-    removeTweet: id => dispatch.tweets.remove(id)
+    loadData: () => dispatch.tweets.loadData()
 })
 
 export default withRouter(connect(mapState, mapDispatch)(Page));

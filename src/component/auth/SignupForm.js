@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 
-import axios from 'axios';
 import { connect } from 'react-redux'
-
-import { baseUrl } from '../../config'
 
 class SignupForm extends Component {
 
@@ -26,21 +23,12 @@ class SignupForm extends Component {
         this.setState({ repeatPassword: e.target.value })
     }
 
-    handleSignup = () => {
-        axios.post(baseUrl + '/auth/signup', this.state)
-            .then(res => {
-                if (res.data.error) {
-                    console.log(res.data.error)
-                } else {
-                    res.data.token && this.props.updateUser({ token: res.data.token, profile: res.data.profile })
-                }
-            })
-    }
+    handleSignup = () => this.props.signUp(this.state)
 
     render() {
         return (
             <div className="profile user-auth">
-                <h3>Log in to Web Tweet</h3>
+                <h3>Sign in to Web Tweet</h3>
                 <input className="input-auth" type="text" placeholder="Username" onChange={this.handleUsernameChange} />
                 <input className="input-auth" type="password" placeholder="Password" onChange={this.handlePasswordChange} />
                 <input className="input-auth" type="password" placeholder="Repeat password" onChange={this.handleRepeatPasswordChange} />
@@ -55,7 +43,7 @@ class SignupForm extends Component {
 }
 
 const mapDispatch = dispatch => ({
-    updateUser: (user) => dispatch.user.update(user)
+    signUp: (user) => dispatch.user.signUp(user)
 })
 
 export default connect(null, mapDispatch)(SignupForm);
