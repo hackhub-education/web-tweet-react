@@ -1,5 +1,6 @@
 import { baseUrl } from './config'
 import axios from 'axios'
+import history from './module/navigation'
 
 export const user = {
     state: {
@@ -11,26 +12,33 @@ export const user = {
             return { ...state, ...user }
         },
         logout(state) {
-            delete state.token
-            return { ...state }
+            return { ...state, token: null }
         }
     },
     effects: {
-        async updateProfile(user) {
-            axios.put(baseUrl + '/profile/' + user.profile._id, user.profile, {
+        async updateProfile(profile, rootState) {
+            const response = await axios.put(baseUrl + '/profile', profile, {
                 headers: {
-                    Authorization: 'Bearer ' + user.token
+                    Authorization: 'Bearer ' + rootState.user.token
                 }
-            }).then(res => {
-                this.update({ profile: res.data.profile })
-                user.history.push('/profile')
             })
+            this.update({ profile: response.data.profile })
+            history.push('/profile')
+
         },
         async loginUser(user) {
-            axios.post(baseUrl + '/auth/login', user)
-            .then(res => {
-                res.data.token && this.update({ token: res.data.token, profile: res.data.profile })
-            })
+            const { data: { token, profile } } = await axios.post(baseUrl + '/auth/login', user)
+            token && this.update({ token, profile })
+            history.replace(profile.location && profile.bio ? '/' : '/profile/edit')
+        },
+        async signUp(newUser) {
+            const { data: { error, token, profile } } = await axios.post(baseUrl + '/auth/signup', newUser)
+            if (error) {
+                console.log(error)
+            } else {
+                token && this.update({ token, profile })
+                history.replace('/')
+            }
         }
     }
 }
@@ -51,29 +59,27 @@ export const tweets = {
     },
     effects: {
         async loadData() {
-            let res = await fetch(baseUrl + '/tweet')
-            let data = await res.json()
-            this.feed(data.tweets)
+            const res = await axios.get(baseUrl + '/tweet')
+            this.feed(res.data.tweets)
         },
-        async postData(newTweet) {
-
-            axios.post(baseUrl + '/tweet', { content: newTweet.content }, {
+        postData(newTweet, rootState) {
+            return axios.post(baseUrl + '/tweet', { content: newTweet }, {
                 headers: {
-                    Authorization: 'Bearer ' + newTweet.token
+                    Authorization: 'Bearer ' + rootState.user.token
                 }
             }).then(res => {
                 this.add(res.data.tweet)
-            })            
+            })
         },
-        async removeData(deleteTweet) {
+        async removeData(tweetID, rootState) {
 
-            axios.delete(baseUrl + '/tweet/' + deleteTweet._id,{
+            const res = await axios.delete(baseUrl + '/tweet/' + tweetID, {
                 headers: {
-                    Authorization: 'Bearer ' + deleteTweet.token
+                    Authorization: 'Bearer ' + rootState.user.token
                 }
-            }).then(res => {
-                res.data.success ? this.remove(deleteTweet._id) : console.log(res.data.error)
-            })        
+            })
+            res.data.success ? this.remove(tweetID) : console.log(res.data.error)
+
         }
     }
 }

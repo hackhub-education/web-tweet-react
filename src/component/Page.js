@@ -15,15 +15,21 @@ class Page extends Component {
     }
 
     render() {
-        const props = this.props
+        const {
+            profile,
+            token,
+        } = this.props
+
         return (
             <div>
-                <Nav profile={props.profile} token={props.token} />
+                <Nav profile={profile} token={token} />
                 <div className="container">
-                    <SideBar profile={props.profile} token={props.token} />
+                    <div className="col-2of5 bg-white">
+                        <SideBar token={token} />
+                    </div>
                     <div className="col-3of5 bg-white">
-                        {props.token && <TweetPost />}
-                        <TweetList />
+                        {token && <TweetPost />}
+                        <TweetList/>
                     </div>
                 </div>
             </div>
@@ -38,11 +44,7 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-    loadData: () => dispatch.tweets.loadData(),
-    updateUser: user => dispatch.user.update(user),
-    logout: () => dispatch.user.logout(),
-    addTweet: tweet => dispatch.tweets.add(tweet),
-    removeTweet: id => dispatch.tweets.remove(id)
+    loadData: () => dispatch.tweets.loadData()
 })
 
 export default withRouter(connect(mapState, mapDispatch)(Page));
