@@ -17,7 +17,7 @@ export const user = {
     },
     effects: {
         async updateProfile(profile, rootState) {
-            const response = await axios.put(baseUrl + '/profile/' + profile._id, profile, {
+            const response = await axios.put(baseUrl + '/profile', profile, {
                 headers: {
                     Authorization: 'Bearer ' + rootState.user.token
                 }
