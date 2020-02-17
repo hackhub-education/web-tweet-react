@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import moment from 'moment';
-
+import { connect } from 'react-redux'
 import { Route } from 'react-router-dom';
 
 import TweetDelete from './TweetDelete'
@@ -22,4 +22,8 @@ class TweetItem extends Component {
     }
 }
 
-export default TweetItem;
+const mapState = state => ({
+  token: state.user.token
+})
+
+export default connect(mapState, null)(TweetItem);

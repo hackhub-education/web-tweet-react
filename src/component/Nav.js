@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 
+import { connect } from 'react-redux'
+
 class Nav extends Component {
     render() {
         return (
@@ -20,4 +22,9 @@ class Nav extends Component {
     }
 }
 
-export default Nav;
+const mapState = state => ({
+  profile: state.user.profile,
+  token: state.user.token
+})
+
+export default connect(mapState, null)(Nav);

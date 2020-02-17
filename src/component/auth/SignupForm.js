@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
-
-import axios from 'axios';
-import { baseUrl } from '../../config'
+import { connect } from 'react-redux'
 
 class SignupForm extends Component {
     constructor(props) {
@@ -43,15 +41,7 @@ class SignupForm extends Component {
     }
 
     handleSignup() {
-        let that = this
-        axios.post(baseUrl + '/auth/signup', this.state)
-            .then(res => {
-                if (res.data.error) {
-                    console.log(res.data.error)
-                } else {
-                    res.data.token && that.props.handleUserUpdate({ token: res.data.token, profile: res.data.profile })
-                }
-            })
+      this.props.signupUser(this.state)
     }
 
     render() {
@@ -68,4 +58,8 @@ class SignupForm extends Component {
     }
 }
 
-export default SignupForm;
+const mapDispatch = dispatch => ({
+  signupUser: (credentials) => dispatch.user.signupUser(credentials)
+})
+
+export default connect(null, mapDispatch)(SignupForm);

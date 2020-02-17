@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import { baseUrl } from '../config'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
 import Nav from './Nav';
 import TweetList from './tweet/TweetList'
@@ -10,27 +10,8 @@ import SideBar from './Sidebar';
 class Page extends Component {
     constructor(props) {
         super(props)
-        this.state = {
-            tweets: [],
-            token: '',
-            profile: {}
-        };
         this.handleNewPost = this.handleNewPost.bind(this)
-        this.handleUserUpdate = this.handleUserUpdate.bind(this)
-        this.handleLogout = this.handleLogout.bind(this)
         this.handleDeletePost = this.handleDeletePost.bind(this)
-    }
-
-    handleUserUpdate(user) {
-        this.setState({
-            ...user
-        })
-    }
-
-    handleLogout() {
-        this.setState({
-            token: ''
-        })
     }
 
     handleNewPost(newPost) {
@@ -50,23 +31,15 @@ class Page extends Component {
         })
     }
 
-    componentDidMount() {
-        axios.get(baseUrl + '/tweet')
-            .then(res => {
-                const tweets = res.data.tweets
-                this.setState({ tweets });
-            })
-    }
-
     render() {
         return (
             <div>
-                <Nav profile={this.state.profile} token={this.state.token} />
+                <Nav/>
                 <div className="container">
-                    <SideBar profile={this.state.profile} handleUserUpdate={this.handleUserUpdate} handleLogout={this.handleLogout} token={this.state.token} />
+                    <SideBar handleUserUpdate={this.handleUserUpdate} handleLogout={this.handleLogout}/>
                     <div className="col-3of5 bg-white">
-                        {this.state.token && <TweetPost profile={this.state.profile} handleNewPost={this.handleNewPost} token={this.state.token}/>}
-                        <TweetList tweets={this.state.tweets} token={this.state.token} profile={this.state.profile} handleDeletePost={this.handleDeletePost}/>
+                        {this.props.token && <TweetPost handleNewPost={this.handleNewPost}/>}
+                        <TweetList handleDeletePost={this.handleDeletePost}/>
                     </div>
                 </div>
             </div>
@@ -74,4 +47,8 @@ class Page extends Component {
     }
 }
 
-export default Page;
+const mapState = state => ({
+  token: state.user.token
+})
+
+export default withRouter(connect(mapState, null)(Page));

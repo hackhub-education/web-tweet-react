@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-
+import { connect } from 'react-redux'
 import ProfileAction from './ProfileAction'
 
 class Profile extends Component {
@@ -13,10 +13,14 @@ class Profile extends Component {
                 <h5>@{this.props.profile.username}</h5>
                 {this.props.profile.location && <h4><i className="fas fa-map-marker-alt"></i> {this.props.profile.location}</h4>}
                 <p className="center">{this.props.profile.bio}</p>
-                <Route path='/profile' render={() => <ProfileAction handleLogout={this.props.handleLogout} /> } /> 
+                <Route path='/profile' render={() => <ProfileAction /> } /> 
             </div>
         );
     }
 }
 
-export default Profile;
+const mapState = state => ({
+  profile: state.user.profile
+})
+
+export default connect(mapState, null)(Profile);

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-
+import { connect } from 'react-redux'
 import { baseUrl } from '../../config'
 
 class TweetPost extends Component {
@@ -50,4 +50,9 @@ class TweetPost extends Component {
     }
 }
 
-export default TweetPost;
+const mapState = state => ({
+  profile: state.user.profile,
+  token: state.user.token
+})
+
+export default connect(mapState, null)(TweetPost);
